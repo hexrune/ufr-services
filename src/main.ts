@@ -15,6 +15,7 @@ controllers.forEach((controller) => app.route(controller));
 
 if (import.meta.env.PROD) {
     void app.listen(3000);
+    console.log('Running with fastify on :3000');
 }
 
 export const seiScraper = app;
