@@ -1,13 +1,13 @@
-const path = require('path')
-const { defineConfig } = require('vite')
-const {VitePluginNode} = require("vite-plugin-node");
+const path = require('path');
+const { defineConfig } = require('vite');
+const { VitePluginNode } = require('vite-plugin-node');
 
 module.exports = defineConfig({
     build: {
         lib: {
             entry: path.resolve(__dirname, 'src/main.ts'),
             name: 'sei-scraper',
-            fileName: (format) => `sei-scraper.${format}.js`
+            fileName: (format) => `sei-scraper.${format}.js`,
         },
     },
     server: {
@@ -19,5 +19,5 @@ module.exports = defineConfig({
             appPath: 'src/main.ts',
             exportName: 'seiScraper',
         }),
-    ]
+    ],
 });
