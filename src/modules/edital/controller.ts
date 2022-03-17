@@ -1,7 +1,7 @@
 import { Controller } from '../../types/module';
 import { scrapForEditals } from './service';
 
-const editalController: Controller = [
+export const editalController: Controller = [
     {
         method: 'GET',
         url: '/edital',
@@ -16,5 +16,3 @@ const editalController: Controller = [
         },
     },
 ];
-
-export default editalController;

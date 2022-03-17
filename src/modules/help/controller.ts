@@ -1,13 +1,13 @@
 import { Controller } from '../../types/module';
-import { getRouteListHelp } from './service';
+import { getRouteHelp } from './service';
 
-const helpController: Controller = [
+export const helpController: Controller = [
     {
         method: 'GET',
         url: '/',
         handler: async (_request, reply) => {
             try {
-                const data = await getRouteListHelp();
+                const data = await getRouteHelp();
 
                 reply.send(data);
             } catch (e: any) {
@@ -16,5 +16,3 @@ const helpController: Controller = [
         },
     },
 ];
-
-export default helpController;

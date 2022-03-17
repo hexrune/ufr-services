@@ -1,3 +1,4 @@
-import editalController from './edital/controller';
+import { editalController } from './edital/controller';
+import { helpController } from './help/controller';
 
-export default [...editalController];
+export default [...helpController, ...editalController];
