@@ -11,7 +11,7 @@ module.exports = defineConfig({
         },
     },
     server: {
-        port: 5050,
+        port: 3000,
     },
     plugins: [
         ...VitePluginNode({
