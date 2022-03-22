@@ -7,7 +7,7 @@ services:
     working_dir: /app
     volumes:
       - .:/app
-    command: yarn run dev
     ports:
       - "3000:3000"
+    entrypoint: ["/bin/sh", "-c", "yarn install && yarn dev"]
     restart: unless-stopped
