@@ -3,7 +3,7 @@ version: "3.8"
 services:
   api:
     container_name: sei-scrapper
-    image: node:16.14.0-alpine
+    image: mcr.microsoft.com/playwright:focal
     working_dir: /app
     volumes:
       - .:/app
