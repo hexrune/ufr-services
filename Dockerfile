@@ -8,7 +8,7 @@ RUN yarn install && yarn build
 FROM mcr.microsoft.com/playwright:focal as runner
 WORKDIR /app
 
-COPY --from=builder /app/dist .
+COPY --from=builder /app/dist /app/dist
 COPY --from=builder /app/package.json .
 COPY --from=builder /app/yarn.lock .
 

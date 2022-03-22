@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import fastify from 'fastify';
 import fastifyCors from 'fastify-cors';
 import controllers from './modules/controller';
@@ -5,7 +6,7 @@ import controllers from './modules/controller';
 const app = fastify();
 
 app.register(fastifyCors, {
-    origin: process.env.NODE_ENV === 'production' ? 'https://www.example.com' : '*',
+    origin: (process.env.URL as string).split(','),
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
