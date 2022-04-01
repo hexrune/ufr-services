@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import fastify from 'fastify';
 import fastifyCors from 'fastify-cors';
-import controllers from './modules/controller';
+import controllers from './modules/controllers';
 
 const app = fastify();
 

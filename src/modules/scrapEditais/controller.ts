@@ -1,10 +1,10 @@
 import { Controller } from '../../types/module';
 import { scrapForEditals } from './service';
 
-export const editalController: Controller = [
+export const scrapEditaisController: Controller = [
     {
         method: 'GET',
-        url: '/edital',
+        url: '/editais',
         handler: async (_request, reply) => {
             try {
                 const data = await scrapForEditals();
