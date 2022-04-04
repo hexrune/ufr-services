@@ -10,16 +10,18 @@ export type Edital = {
     orgao: string;
     resumo: string;
     imprensaNacional: string;
+    link: string;
 };
 
 export async function scrapForEditals(): Promise<Edital[]> {
     const browser = await playwright.chromium.launch();
     const page = await browser.newPage();
 
-    await page.goto(paths.publicacoesEletronicas.edital);
+    await page.goto(paths.sei.publicacoesEletronicas.edital);
 
     const list = await page.evaluate(() => {
         const rows = document.querySelectorAll('#tblPublicacoes tr');
+        const items: Edital[] = [];
 
         if (!rows) throw Error('Could not find the rows');
         const rowsWithCols = Object.values(rows)
@@ -32,27 +34,36 @@ export async function scrapForEditals(): Promise<Edital[]> {
                 return cols;
             });
 
-        return rowsWithCols.map((rowWithCols) => {
+        rowsWithCols.forEach((rowWithCols) => {
             const rowWithColsArray = Object.values(rowWithCols);
+            let link = '';
 
-            const colValues = rowWithColsArray.slice(0, rowWithColsArray.length - 1).map((col) => {
-                const content =
-                    col.firstElementChild?.tagName === 'A' ? col.firstElementChild.innerHTML : col.innerHTML;
+            const colValues = rowWithColsArray.slice(0, rowWithColsArray.length - 1).map((col, idx) => {
+                if (col.firstElementChild?.tagName === 'A') {
+                    if (idx === 0) link = (col.firstElementChild as HTMLAnchorElement).href;
 
-                return content.trim().replaceAll('&nbsp;', '');
+                    return col.firstElementChild.innerHTML.trim().replaceAll('&nbsp;', '');
+                }
+
+                return col.innerHTML.trim().replaceAll('&nbsp;', '');
             });
 
-            return {
-                protocolo: colValues[0],
-                descricao: colValues[1],
-                veiculo: colValues[2],
-                dataDePublicacao: colValues[3],
-                unidade: colValues[4],
-                orgao: colValues[5],
-                resumo: colValues[6],
-                imprensaNacional: colValues[7],
-            } as Edital;
+            if (!colValues[0] || colValues[0].length === 0) return;
+
+            items.push({
+                protocolo: colValues[0] ?? '',
+                descricao: colValues[1] ?? '',
+                veiculo: colValues[2] ?? '',
+                dataDePublicacao: colValues[3] ?? '',
+                unidade: colValues[4] ?? '',
+                orgao: colValues[5] ?? '',
+                resumo: colValues[6] ?? '',
+                imprensaNacional: colValues[7] ?? '',
+                link,
+            } as Edital);
         });
+
+        return items;
     });
 
     void browser.close();

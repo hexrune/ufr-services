@@ -1,9 +1,6 @@
-import 'dotenv/config';
 import fastify from 'fastify';
 import fastifyCors from 'fastify-cors';
 import controllers from './modules/controllers';
-
-const app = fastify();
 
 const allowedOrigins = [
     'https://ufr.edu.br',
@@ -11,6 +8,8 @@ const allowedOrigins = [
     'https://sip.ufr.edu.br',
     'https://sei.ufr.edu.br',
 ];
+
+const app = fastify();
 
 app.register(fastifyCors, {
     origin: process.env.NODE_ENV === 'production' ? allowedOrigins : ['*'],
@@ -22,7 +21,7 @@ app.register(fastifyCors, {
 controllers.forEach((controller) => app.route(controller));
 
 if (process.env.NODE_ENV === 'production') {
-    app.listen(3000).then((url) => console.log(`Running with fastify on ${url}`));
+    app.listen(5000).then((url) => console.log(`Running with fastify on ${url}`));
 }
 
-export const seiScraper = app;
+export const ufrServices = app;

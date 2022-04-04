@@ -1,13 +1,12 @@
 {
-  "name": "sei-scraper",
+  "name": "ufr-services",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build"
   },
   "dependencies": {
-    "dotenv": "^16.0.0",
     "electron": "^17.1.2",
     "fastify": "^3.27.4",
     "fastify-cors": "^6.0.3",
