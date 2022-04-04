@@ -1,15 +1,10 @@
 import { Controller } from '../../types/module';
+import { getLinks } from './service';
 
-export const controller: Controller = [
+export const footerLinksController: Controller = [
     {
         method: 'GET',
         url: '/footer-links',
-        handler: async () => {
-            try {
-                //
-            } catch (e) {
-                //
-            }
-        },
+        handler: async () => getLinks(),
     },
 ];

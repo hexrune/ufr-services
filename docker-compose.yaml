@@ -5,6 +5,8 @@ services:
     container_name: sei-scrapper
     image: mcr.microsoft.com/playwright:focal
     working_dir: /app
+    environment:
+      - NODE_ENV=development
     volumes:
       - .:/app
     ports:

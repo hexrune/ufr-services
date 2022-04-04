@@ -12,7 +12,7 @@ export type Edital = {
     imprensaNacional: string;
 };
 
-export const scrapForEditals = async (): Promise<Edital[]> => {
+export async function scrapForEditals(): Promise<Edital[]> {
     const browser = await playwright.chromium.launch();
     const page = await browser.newPage();
 
@@ -58,4 +58,4 @@ export const scrapForEditals = async (): Promise<Edital[]> => {
     void browser.close();
 
     return list;
-};
+}

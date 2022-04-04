@@ -1,4 +1,4 @@
-export const getRouteHelp = async () => {
+export async function getRouteHelp() {
     return {
         hello: 'Use uma das rotas para obter os dados desejados.',
         routes: {
@@ -6,4 +6,4 @@ export const getRouteHelp = async () => {
             'Links do Rodape dos Sites': 'GET /footer-links',
         },
     };
-};
+}

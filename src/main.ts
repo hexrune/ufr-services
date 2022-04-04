@@ -5,8 +5,15 @@ import controllers from './modules/controllers';
 
 const app = fastify();
 
+const allowedOrigins = [
+    'https://ufr.edu.br',
+    'https://suap.ufr.edu.br',
+    'https://sip.ufr.edu.br',
+    'https://sei.ufr.edu.br',
+];
+
 app.register(fastifyCors, {
-    origin: (process.env.URL as string).split(','),
+    origin: process.env.NODE_ENV === 'production' ? allowedOrigins : ['*'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
@@ -14,7 +21,7 @@ app.register(fastifyCors, {
 
 controllers.forEach((controller) => app.route(controller));
 
-if (import.meta.env.PROD) {
+if (process.env.NODE_ENV === 'production') {
     app.listen(3000).then((url) => console.log(`Running with fastify on ${url}`));
 }
 
