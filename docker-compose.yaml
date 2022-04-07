@@ -3,7 +3,9 @@ version: "3.8"
 services:
   api:
     container_name: ufr-services
-    image: mcr.microsoft.com/playwright:focal
+    build:
+      context: .
+      dockerfile: dev.dockerfile
     working_dir: /app
     environment:
       - NODE_ENV=development

@@ -1,4 +1,4 @@
-import playwright from 'playwright';
+import { chromium } from 'playwright';
 import { paths } from '../../utils/paths';
 
 export type Edital = {
@@ -14,7 +14,7 @@ export type Edital = {
 };
 
 export async function scrapForEditals(): Promise<Edital[]> {
-    const browser = await playwright.chromium.launch();
+    const browser = await chromium.launch();
     const page = await browser.newPage();
 
     await page.goto(paths.sei.publicacoesEletronicas.edital);
