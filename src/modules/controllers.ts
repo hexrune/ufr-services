@@ -1,5 +1,5 @@
-import { scrapEditaisController } from './scrapEditais/controller';
 import { helpController } from './help/controller';
 import { footerLinksController } from './footerLinks/controller';
+import { editalController } from './edital/controller';
 
-export default [...helpController, ...scrapEditaisController, ...footerLinksController];
+export default [...helpController, ...editalController, ...footerLinksController];
